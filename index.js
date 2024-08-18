@@ -4,13 +4,16 @@ const OUTSIDE_SHADOW_CLASS = "outside-shadow";
 const INSIDE_SHADOW_CLASS = "inside-shadow";
 /////////////
 let level;
-let game_over;
+let game_over=true;
 let sequence;
+let user_sequence;
 
 function initialize_data() {
   level = 1;
   game_over = false;
   sequence = [];
+  user_sequence=[];
+
 }
 function get_next_number() {
   return Math.floor(Math.random() * CELLS.length) + 1;
@@ -20,7 +23,7 @@ function effect_remove_class_from_cell(cell, class_name) {
     setTimeout(() => {
       $(`.${cell}`).removeClass(class_name);
       resolve();
-    }, 500 - level * 10);
+    }, 1000 - level*2 );
   });
 }
 function update_level() {
@@ -31,17 +34,32 @@ async function play_effect_for_cell(cell_id,cell_class){
     await effect_remove_class_from_cell(cell_id, cell_class);
 }
 
-async function start() {
-  while (!game_over && level <= 20) {
-    update_level();
-    let cell = CELLS[get_next_number() - 1];
-    sequence.push(cell);
-    await play_effect_for_cell(cell,OUTSIDE_SHADOW_CLASS);
-    await play_effect_for_cell(cell,INSIDE_SHADOW_CLASS);
-  }
+async function show_sequence(){
+    for (let cell of sequence){
+        await play_effect_for_cell(cell,OUTSIDE_SHADOW_CLASS);
+        await play_effect_for_cell(cell,INSIDE_SHADOW_CLASS);
+    }
+}
+async function start_level() {
+  update_level();
+  let cell = CELLS[get_next_number() - 1];
+  sequence.push(cell);
+  console.log(cell)
+  await show_sequence();
 }
 
 $(document).on("keypress", () => {
-  initialize_data();
-  start();
+  if (game_over==true) {
+      initialize_data();
+      start_level();
+  }
+});
+
+
+$(".button-grid").on("click", (event) => {
+    user_sequence.push(event.target.classList[1])
+    if(user_sequence.length==sequence.length){
+        start_level();
+        user_sequence=[]
+    }
 });

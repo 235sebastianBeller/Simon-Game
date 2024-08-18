@@ -42,10 +42,8 @@ h2{
     margin: 3%;
     border:#0F4A6F 5px solid;
 }
-
-.button-grid:hover,.outside-shadow{
+.outside-shadow{
     box-shadow: rgba(201, 228, 255, 0.35) 0px 5px 15px;
-   
 }
 .button-grid:active,.inside-shadow{
     box-shadow: inset 0px 0px 0px 100px rgba(0, 0, 0, 0.5);
