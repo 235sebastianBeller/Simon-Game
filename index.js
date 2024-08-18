@@ -23,7 +23,7 @@ function effect_remove_class_from_cell(cell, class_name) {
     setTimeout(() => {
       $(`.${cell}`).removeClass(class_name);
       resolve();
-    }, 1000 - level*2 );
+    }, Math.max(1000 - level*25 ,200));
   });
 }
 function update_level() {
