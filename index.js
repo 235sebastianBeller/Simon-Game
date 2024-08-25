@@ -1,3 +1,8 @@
+//  **********************************************************
+//  * Project: Simon Game                                      *
+//  * Autor: Sebastian Daniel Beller Sanzetenea              *
+//  * Descripcion: A game to test your memory.               *
+//  **********************************************************
 const CELLS = ["green", "red", "yellow", "blue"];
 const OUTSIDE_SHADOW_CLASS = "outside-shadow";
 const INSIDE_SHADOW_CLASS = "inside-shadow";
