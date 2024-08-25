@@ -1,5 +1,5 @@
 //  **********************************************************
-//  * Project: Simon Game                                      *
+//  * Project: Simon Game                                    *
 //  * Autor: Sebastian Daniel Beller Sanzetenea              *
 //  * Descripcion: A game to test your memory.               *
 //  **********************************************************
